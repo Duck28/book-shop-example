@@ -27,6 +27,7 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.5.RELEASE'
     compile group: 'org.springframework', name: 'spring-web', version: '5.0.5.RELEASE'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.0.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.6.RELEASE'
     compile 'io.rest-assured:json-path:3.1.0'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.18.3'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.5.RELEASE'

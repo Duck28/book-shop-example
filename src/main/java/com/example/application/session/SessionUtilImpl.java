@@ -1,10 +1,13 @@
-import com.example.application.session.SessionUtil;
+package com.example.application.session;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.stereotype.Component;
 
-public class SessionUtilTest implements SessionUtil {
+@Component
+public class SessionUtilImpl implements SessionUtil{
 
     private static SessionFactory sessionFactory = buildSessionFactory();
 
@@ -14,7 +17,7 @@ public class SessionUtilTest implements SessionUtil {
         {
             if (sessionFactory == null)
             {
-                Configuration configuration = new Configuration().configure(SessionUtilTest.class.getResource("/hibernate-test.cfg.xml"));
+                Configuration configuration = new Configuration().configure(SessionUtilImpl.class.getResource("/hibernate.cfg.xml"));
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(configuration.getProperties());
                 ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();

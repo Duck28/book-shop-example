@@ -3,12 +3,12 @@ package com.example.application.entity;
 
 
 public class HelloServiceEntity {
-    private String message;
+    private String name;
 
-    public void setMessage(String message){
-        this.message  = message;
+    public void setName(String name){
+        this.name = name;
     }
-    public String getMessage(){
-        return "Your Message : Hello " + message;
+    public String getName() {
+        return "Hello " + name;
     }
 }

@@ -9,7 +9,7 @@
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            org.hsqldb.jdbcDriver
 
         </property>
 
@@ -24,10 +24,13 @@
         </property>
 
         <property name = "hibernate.connection.password">
-            1
+
         </property>
 
         <mapping class = "com.example.application.entity.Book"/>
 
+
+
     </session-factory>
 </hibernate-configuration>
+
