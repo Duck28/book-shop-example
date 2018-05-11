@@ -1,13 +1,9 @@
-package com.example.application.session;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.springframework.stereotype.Component;
 
-@Component
-public class SessionUtil {
+public class SessionUtilTest {
 
     private static SessionFactory sessionFactory = buildSessionFactory();
 
@@ -17,7 +13,7 @@ public class SessionUtil {
         {
             if (sessionFactory == null)
             {
-                Configuration configuration = new Configuration().configure(SessionUtil.class.getResource("/hibernate.cfg.xml"));
+                Configuration configuration = new Configuration().configure(SessionUtilTest.class.getResource("/hibernate-test.cfg.xml"));
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(configuration.getProperties());
                 ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
@@ -31,12 +27,12 @@ public class SessionUtil {
         }
     }
 
-    public SessionFactory getSessionFactory()
+    public static SessionFactory getSessionFactory()
     {
         return sessionFactory;
     }
 
-    public void shutdown()
+    public static void shutdown()
     {
         getSessionFactory().close();
     }

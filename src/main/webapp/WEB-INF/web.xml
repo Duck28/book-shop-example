@@ -11,6 +11,22 @@
         <!--<param-value>false</param-value>-->
     <!--</context-param>-->
 
+    <!--<context-param>-->
+        <!--<param-name>contextConfigLocation</param-name>-->
+        <!--<param-value>-->
+            <!--/WEB-INF/applicationContext.xml-->
+        <!--</param-value>-->
+    <!--</context-param>-->
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:/applicationContext.xml</param-value>
+    </context-param>
+
 
     <listener>
         <listener-class>
@@ -18,12 +34,6 @@
         </listener-class>
     </listener>
 
-
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
 
     <servlet>
         <servlet-name>resteasy-servlet</servlet-name>
@@ -33,6 +43,11 @@
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>com.example.application.JaxRsConfiguration</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:/applicationContext.xml</param-value>
         </init-param>
     </servlet>
 
