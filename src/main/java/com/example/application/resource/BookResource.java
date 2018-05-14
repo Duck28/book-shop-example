@@ -16,11 +16,6 @@ public class BookResource {
     @Inject
     private BookDAO bookDAO;
 
-
-//    public BookResource(BookDAO bookDAO) {
-//        this.bookDAO = bookDAO;
-//    }
-
 //    private TestBook t = new TestBook();
 
 

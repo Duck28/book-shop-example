@@ -1,18 +1,16 @@
-    import com.example.application.DAO.BookDAO;
-    import com.example.application.DAO.BookDAOImpl;
-    import com.example.application.entity.Book;
+import com.example.application.DAO.BookDAO;
+import com.example.application.DAO.BookDAOImpl;
+import com.example.application.entity.Book;
     import org.hibernate.Session;
-    import org.hibernate.query.Query;
-    import org.junit.Assert;
+import org.junit.Assert;
     import org.junit.Test;
     import org.junit.runner.RunWith;
+    import org.springframework.stereotype.Component;
     import org.springframework.test.annotation.DirtiesContext;
     import org.springframework.test.context.ContextConfiguration;
     import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-    import javax.inject.Inject;
-    import javax.sql.DataSource;
-    import java.util.List;
+import java.util.List;
 
     /**
      * Does not work.
@@ -24,6 +22,7 @@
             "/applicationContext-test.xml"
     })
     @DirtiesContext
+    @Component
     public class TestDAO {
 
         private BookDAO bookDAO = new BookDAOImpl(new SessionUtilTest());
@@ -31,7 +30,7 @@
         @Test
         public void assertIfSessionWorks() {
             SessionUtilTest testutil = new SessionUtilTest();
-            Session session = testutil.getSessionFactory().openSession();
+            Session session = testutil.getSession();
             Assert.assertNotNull(session);
         }
 
@@ -39,9 +38,9 @@
         public void testBookById() {
             Book result = bookDAO.getBookById(1);
             Assert.assertEquals(1, result.getId());
-            Assert.assertEquals("Catcher in the Rye", result.getTitle());
-            Assert.assertEquals("Jerome David Salinger", result.getAuthor());
-            Assert.assertEquals("Little, Brown and Company", result.getPublisher());
+            Assert.assertEquals("Catcher in the Rye", result.getTitle().trim());
+            Assert.assertEquals("Jerome David Salinger", result.getAuthor().trim());
+            Assert.assertEquals("Little, Brown and Company", result.getPublisher().trim());
             Assert.assertEquals(1951, result.getYear());
 
     //        bookDAO = (BookDAO) context.getBean("bookDAO");

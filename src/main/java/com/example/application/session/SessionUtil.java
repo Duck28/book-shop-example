@@ -1,9 +1,10 @@
 package com.example.application.session;
 
-import org.hibernate.SessionFactory;
+import org.hibernate.Session;
 
 public interface SessionUtil {
 
-    SessionFactory getSessionFactory();
-    void shutdown();
+    Session getSession();
+
+
 }
