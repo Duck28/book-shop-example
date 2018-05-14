@@ -5,29 +5,32 @@
     <session-factory>
 
         <property name = "hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.HSQLDialect
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.jdbc.Driver
+            org.hsqldb.jdbcDriver
 
         </property>
 
         <property name = "hibernate.connection.url">
             <!--jdbc:mysql://localhost:3306/books-->
-            jdbc:mysql://localhost:3307/books?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
-            <!--jdbc:mysql://localhost:3307/books-->
+            jdbc:hsqldb:mem:dataSource
+            <!--?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC-->
         </property>
 
         <property name = "hibernate.connection.username">
-            root
+            sa
         </property>
 
         <property name = "hibernate.connection.password">
-            password
+
         </property>
 
         <mapping class = "com.example.application.entity.Book"/>
 
+
+
     </session-factory>
 </hibernate-configuration>
+

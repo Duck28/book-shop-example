@@ -1,24 +1,10 @@
 package com.example.application.session;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
 
-public class SessionUtil {
+public interface SessionUtil {
 
-    private static SessionUtil instance = new SessionUtil();
-    private SessionFactory sessionFactory;
+    Session getSession();
 
-    public static SessionUtil getInstance() {
-        return instance;
-    }
 
-    private SessionUtil() {
-        Configuration config = new Configuration();
-        config.configure("hibernate.cfg.xml");
-        sessionFactory = config.buildSessionFactory();
-    }
-
-    public static org.hibernate.Session getSession() {
-        return getInstance().sessionFactory.openSession();
-    }
 }

@@ -1,19 +1,30 @@
 package com.example.application.DAO;
 
-import com.example.application.session.SessionUtil;
 import com.example.application.entity.Book;
+import com.example.application.session.SessionUtilImpl;
+import com.example.application.session.SessionUtil;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
+import javax.inject.Inject;
 import java.util.List;
 
+@Component
 public class BookDAOImpl implements BookDAO{
+
+    private SessionUtil util;
+
+    @Inject
+    public BookDAOImpl(SessionUtil util) {
+        this.util = util;
+    }
 
     @Override
     public List<Book> getAllBooks() {
-        Session session = SessionUtil.getSession();
-        Query query = session.createQuery("from Book");
+        Session session = util.getSession();
+        Query query = session.createQuery("from Book ");
         List<Book> books = query.list();
 //        List<Books> books = query.getResultList();
         session.close();
@@ -26,7 +37,7 @@ public class BookDAOImpl implements BookDAO{
         if (id <=0) {
             return null;
         }
-        Session session = SessionUtil.getSession();
+        Session session = util.getSession();
         Query query = session.createQuery("select b from Book  b where b.id =" + id);
         Object result = query.uniqueResult();
         return (Book) result;
@@ -34,7 +45,7 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public void addBook(Book Book) {
-        Session session = SessionUtil.getSession();
+        Session session = util.getSession();
         Transaction tx = session.beginTransaction();
         session.save(Book);
         tx.commit();
@@ -45,7 +56,7 @@ public class BookDAOImpl implements BookDAO{
     public int updateBook(int id, Book Book) {
         if(id <=0)
             return 0;
-        Session session = SessionUtil.getSession();
+        Session session = util.getSession();
         Transaction tx = session.beginTransaction();
         Query query = session.createQuery("update Book set title = :title, author = :author, publisher = :publisher, year = :year where id =" + id);
         query.setParameter("title", Book.getTitle());
@@ -64,7 +75,7 @@ public class BookDAOImpl implements BookDAO{
         if (id<=0) {
             return 0;
         }
-        Session session = SessionUtil.getSession();
+        Session session = util.getSession();
         Transaction tx = session.beginTransaction();
         Query query = session.createQuery("delete from Book where id =" + id);
         int rowCount = query.executeUpdate();
