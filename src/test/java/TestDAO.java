@@ -71,5 +71,11 @@ public class TestDAO {
         Assert.assertEquals(bookDAO.getBookById(4).getPublisher(), book.getPublisher());
         Assert.assertEquals(bookDAO.getBookById(4).getYear(), book.getYear());
     }
+
+    @Test
+    public void testDeleteBook() {
+        bookDAO.deleteBook(1);
+        Assert.assertNull(bookDAO.getBookById(1));
+    }
 }
 
