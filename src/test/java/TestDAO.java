@@ -45,7 +45,7 @@ public class TestDAO {
     public void testBooks() {
         List<Book> books = bookDAO.getAllBooks();
         Assert.assertNotNull(books);
-        Assert.assertEquals(3, books.size());
+        Assert.assertEquals(4, books.size());
         for (Book book : books) {
             int id = book.getId();
             if (id == 1) {
@@ -55,20 +55,21 @@ public class TestDAO {
                 Assert.assertEquals(1951, book.getYear());
             }
         }
-
-
-        @Test
-        public void testAddBook () {
-            Book book = new Book();
-            book.setAuthor("Franz Kafka");
-            book.setTitle("Metamorphosis");
-            book.setPublisher("Praha");
-            book.setYear(1945);
-            bookDAO.addBook(book);
-            Assert.assertEquals(bookDAO.getBookById(4).getAuthor(), book.getAuthor());
-            Assert.assertEquals(bookDAO.getBookById(4).getTitle(), book.getTitle());
-            Assert.assertEquals(bookDAO.getBookById(4).getPublisher(), book.getPublisher());
-            Assert.assertEquals(bookDAO.getBookById(4).getYear(), book.getYear());
-        }
     }
+
+
+    @Test
+    public void testAddBook () {
+        Book book = new Book();
+        book.setAuthor("Franz Kafka");
+        book.setTitle("Metamorphosis");
+        book.setPublisher("Praha");
+        book.setYear(1945);
+        bookDAO.addBook(book);
+        Assert.assertEquals(bookDAO.getBookById(4).getAuthor(), book.getAuthor());
+        Assert.assertEquals(bookDAO.getBookById(4).getTitle(), book.getTitle());
+        Assert.assertEquals(bookDAO.getBookById(4).getPublisher(), book.getPublisher());
+        Assert.assertEquals(bookDAO.getBookById(4).getYear(), book.getYear());
+    }
+}
 
